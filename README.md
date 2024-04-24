@@ -1,10 +1,12 @@
 # Sistema-de-Ecommerce-TreeSolution-TS-(GRUPO 3)
+
+# **Curso**
 Gestion de la Configuracion de Software
 
-**Docente**  
+# **Docente**  
 Lenis Rossi Wong Portillo  
 
-**Integrantes:** 
+# **Integrantes:** 
 * Callupe Huamán, Germán
 * Jimenez Castañeda, Luis
 * Tomayquispe Ramos, Jorge Luis
