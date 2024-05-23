@@ -1,5 +1,5 @@
 # SoftLutions
-Sistema-de-Ecommerce-TreeSolution-TS-GRUPO 3
+Sistema de Ecommerce TreeSolution (TS) - GRUPO 3
 
 # **Curso**
 Gestion de la Configuracion de Software
