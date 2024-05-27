@@ -2,7 +2,7 @@
 
 namespace Model;
 
-class Producto{
+class Ventas{
 
     //Base de datos
     protected static $db;
@@ -14,7 +14,7 @@ class Producto{
 
     //Listar todos los productos
     public static function all(){
-        $query = "SELECT * FROM Productos";
+        $query = "SELECT * FROM Ventas";
 
         $resultado = self::consultarSQL($query);
 
