@@ -1,5 +1,6 @@
 <?php 
 
+
 use Model\Producto;
 require __DIR__ . '/../vendor/autoload.php';
 
