@@ -36,7 +36,7 @@ class Router {
         ob_start(); //Almacena en memoria
 
         //?MODIFICAR RUTA CUANDO ESTE EL FRONTEND
-        include __DIR__. "/../Frontend/$view.html"; 
+        include __DIR__. "/../Frontend/TreeSolution-v3/TreeSolution/$view.html";
         $contenido = ob_get_clean();// Almacena el view en $contenido y limpia la memoria
         
         echo $contenido;

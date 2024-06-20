@@ -13,8 +13,10 @@ use Controllers\PaginasController;
 
 $router = new Router();
 
-// RUTAS DEL CLIENTE
-$router->get('/frontend',[PaginasController::class, 'index']);
+// RUTAS DEL CLIENTE 
+$router->get('/inicio',[PaginasController::class, 'index']);
+$router->get('/dashboard',[PaginasController::class, 'dashboard']);
+$router->get('/editarpedido',[PaginasController::class, 'editar']);
 $router->get('/editarpedido',[PaginasController::class, 'editar']);
 
 

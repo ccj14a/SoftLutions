@@ -22,6 +22,7 @@ class ActiveRecord{
         return $resultado;
 
     }
+    
     public static function consultarSQL($query){
         //Consultar la base de datos
         $resultado = self::$db->query($query);

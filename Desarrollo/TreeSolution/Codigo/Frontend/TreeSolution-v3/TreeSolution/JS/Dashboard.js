@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const productList = document.getElementById('productList');
   const sortOptions = document.getElementById('sortOptions');
   const overlay = document.getElementById('overlay');
-  let cart = [];
+      let cart = [];
 
   // Mostrar/Ocultar el menú desplegable
   userIcon.addEventListener('click', function () {

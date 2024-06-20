@@ -6,9 +6,9 @@ use MVC\Router;
 class PaginasController{
 
     public static function index(Router $router){
-        $router->render('index');
+        $router->render('Inicio');
     }
-    public static function editar(Router $router){
+    public static function dashboard(Router $router){
         $router->render('editar');
     }
 }
