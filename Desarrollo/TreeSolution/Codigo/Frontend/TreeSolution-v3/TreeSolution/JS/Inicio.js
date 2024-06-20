@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const darkModeButton = document.getElementById('darkModeButton');
-    const loginButtons = document.querySelectorAll('#loginButton, #exploreButton');
-
+    const loginButtons1 = document.querySelector('#loginButton');
+    const loginButtons2 = document.querySelector('#exploreButton');
     // Toggle Dark Mode
     darkModeButton.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
@@ -21,10 +21,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Navigate to Login
-    loginButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            window.location.href = 'login.html';
-        });
+    
+    loginButtons1.addEventListener('click', function () {
+        window.location.href = '/login';
+    });
+    loginButtons2.addEventListener('click', function () {
+        window.location.href = '/dashboard';
     });
 });
 
@@ -33,13 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const logoutButton = document.getElementById('registrarButton');
 
     logoutButton.addEventListener('click', function () {
-        window.location.href = 'CrearCuenta.html'; // Redirige a la página de inicio
+        window.location.href = '/registrarse'; // Redirige a la página de inicio
     });
 });
 document.addEventListener('DOMContentLoaded', function () {
     const logoutButton = document.getElementById('logoutButton');
 
     logoutButton.addEventListener('click', function () {
-        window.location.href = 'Inicio.html'; // Redirige a la página de inicio
+        window.location.href = '/'; // Redirige a la página de inicio
     });
 });

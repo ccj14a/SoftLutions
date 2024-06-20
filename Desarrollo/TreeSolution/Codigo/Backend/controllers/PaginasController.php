@@ -9,6 +9,12 @@ class PaginasController{
         $router->render('Inicio');
     }
     public static function dashboard(Router $router){
-        $router->render('editar');
+        $router->render('Dashboard');
+    }
+    public static function login(Router $router){
+        $router->render('Login');
+    }
+    public static function registrarse(Router $router){
+        $router->render('CrearCuenta');
     }
 }

@@ -95,7 +95,7 @@ body {
 .main {
     position: relative;
     height: calc(100vh - 50px);
-    background: url('../images/v42_88.png') no-repeat center center fixed;
+    background: url('../../build/images/v42_88.png') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;

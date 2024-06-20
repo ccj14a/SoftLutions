@@ -14,10 +14,10 @@ use Controllers\PaginasController;
 $router = new Router();
 
 // RUTAS DEL CLIENTE 
-$router->get('/inicio',[PaginasController::class, 'index']);
+$router->get('/',[PaginasController::class, 'index']);
 $router->get('/dashboard',[PaginasController::class, 'dashboard']);
-$router->get('/editarpedido',[PaginasController::class, 'editar']);
-$router->get('/editarpedido',[PaginasController::class, 'editar']);
+$router->get('/login',[PaginasController::class, 'login']);
+$router->get('/registrarse',[PaginasController::class, 'registrarse']);
 
 
 // API DE PRODUCTOS
