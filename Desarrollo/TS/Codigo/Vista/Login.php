@@ -4,16 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
-    <link href="./Estilos/Login.css" rel="stylesheet" />
+    <link href="/Public/estilos/Login.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="icon" href="./images/favicon-32x32.png" type="images">
     <title>Login</title>
 </head>
 <body>
     <div class="container">
         <div class="image"></div>
         <div class="form-container">
-            <h1>Bienvenido de vuelta</h1>
+            <h1>Inicio de Sesión</h1>
             <form id="loginForm">
                 <div class="form-group">
                     <label for="username">Email</label>
@@ -31,7 +30,7 @@
                 </div>
             </form>
             <div class="additional-text">
-                <p>o inicia sesión con</p>
+                <p>o iniciar sesión con</p>
             </div>
             <div class="social-buttons">
                 <button type="button" class="Google">Google</button>
@@ -42,6 +41,6 @@
             </div>
         </div>
     </div>
-    <script src="./JS/Login.js"></script>
+    <script src="/Public/scripts/Login.js"></script>
 </body>
 </html>
