@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Treesolution</title>
-    <link rel="stylesheet" href="./Estilos/CrearCuenta.css">
-    <link rel="icon" href="./images/favicon-32x32.png" type="images">
+    <link rel="stylesheet" href="/Public/estilos/CrearCuenta.css">
+    
 </head>
 <body>
     <div class="container">

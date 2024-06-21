@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./Estilos/Dashboard.css">
-    <link rel="icon" href="./images/favicon-32x32.png" type="images">
+    <link rel="stylesheet" href="/Public/estilos/Dashboard2.css">
+    <link rel="icon" href="/Public/imagenes/favicon-32x32.png" type="images">
 </head>
 <body>
     <header class="header">
@@ -19,17 +19,17 @@
         </nav>
         <div class="header__search-container">
             <input type="text" id="searchInput" class="header__search" placeholder="Buscar productos">
-            <button class="header__search-button" id="searchButton"><img src="./images/lupa.png" alt="Buscar" class="header__search-icon"></button>
+            <button class="header__search-button" id="searchButton"><img src="/Public/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
         </div>
         <div class="header__actions">
-            <img src="./images/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
+            <img src="/Public/imagenes/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
             <div class="dropdown-menu" id="userMenu">
                 <a href="#" id="editarPerfil">Editar perfil</a>
                 <a href="#" id="verPerfil">Ver perfil</a>
                 <a href="Inicio.html" id="logout">Cerrar sesión</a>
             </div>
             <div class="cart-icon-container">
-                <img src="./images/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
+                <img src="/Public/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
                 <span id="cartCount" class="cart-count">0</span>
             </div>
         </div>
@@ -108,13 +108,13 @@
     <div class="slider-container">
         <div class="slider">
           <div class="slides">
-            <img src="./images/s1.jpg" alt="Image 1">
-            <img src="./images/s2.jpg" alt="Image 2">
-            <img src="./images/s3.jpg" alt="Image 3">
-            <img src="./images/s4.jpg" alt="Image 4">
+            <img src="/Public/imagenes/s1.jpg" alt="Image 1">
+            <img src="/Public/imagenes/s2.jpg" alt="Image 2">
+            <img src="/Public/imagenes/s3.jpg" alt="Image 3">
+            <img src="/Public/imagenes/s4.jpg" alt="Image 4">
           </div>
-          <button class="prevBtn"><img src="./images/left-arrow.png" alt="Previous"></button>
-          <button class="nextBtn"><img src="./images/right-arrow.png" alt="Next"></button>
+          <button class="prevBtn"><img src="/Public/imagenes/left-arrow.png" alt="Previous"></button>
+          <button class="nextBtn"><img src="/Public/imagenes/right-arrow.png" alt="Next"></button>
         </div>
         <div class="dots-container"></div>
       </div>
@@ -130,7 +130,7 @@
 
         <div id="productList" class="product-list">
             <div class="product" data-name="Polo deportivo azul" data-price="49.90">
-                <img src="./images/producto1.jpg" alt="Polo deportivo azul">
+                <img src="/Public/imagenes/producto1.jpg" alt="Polo deportivo azul">
                 <div class="info">
                     <h3>GENÉRICO</h3>
                     <p>Polo deportivo azul</p>
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <div class="product" data-name="Polo deportivo negro" data-price="49.90">
-                <img src="./images/producto2.jpg" alt="Polo deportivo negro">
+                <img src="/Public/imagenes/producto2.jpg" alt="Polo deportivo negro">
                 <div class="info">
                     <h3>Nike</h3>
                     <p>Polo deportivo negro</p>
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="product" data-name="Short deportivo negro" data-price="42">
-                <img src="./images/producto3.jpg" alt="Short deportivo negro">
+                <img src="/Public/imagenes/producto3.jpg" alt="Short deportivo negro">
                 <div class="info">
                     <h3>Puma</h3>
                     <p>Short deportivo negro</p>
@@ -160,7 +160,7 @@
                 </div>
             </div>
             <div class="product" data-name="Casaca Hombre azul" data-price="119.90">
-                <img src="./images/producto4.jpg" alt="Casaca Hombre azul">
+                <img src="/Public/imagenes/producto4.jpg" alt="Casaca Hombre azul">
                 <div class="info">
                     <h3>BEARCLIFF</h3>
                     <p>Casaca Hombre azul</p>
@@ -169,7 +169,7 @@
                 </div>
             </div>
             <div class="product" data-name="Zapatilla runner" data-price="129.90">
-                <img src="./images/producto5.jpg" alt="Zapatilla runner">
+                <img src="/Public/imagenes/producto5.jpg" alt="Zapatilla runner">
                 <div class="info">
                     <h3>GENÉRICO</h3>
                     <p>Zapatilla runner</p>
@@ -181,7 +181,7 @@
                 </div>
             </div>
             <div class="product" data-name="Zapatilla runner blanca" data-price="159.90">
-                <img src="./images/producto6.jpg" alt="Zapatilla runner blanca">
+                <img src="/Public/imagenes/producto6.jpg" alt="Zapatilla runner blanca">
                 <div class="info">
                     <h3>GENÉRICO</h3>
                     <p>Zapatilla runner blanca</p>
@@ -193,7 +193,7 @@
                 </div>
             </div>
             <div class="product" data-name="Casaca roja para mujer" data-price="120">
-                <img src="./images/producto7.jpg" alt="Casaca roja para mujer">
+                <img src="/Public/imagenes/producto7.jpg" alt="Casaca roja para mujer">
                 <div class="info">
                     <h3>GENÉRICO</h3>
                     <p>Casaca roja para mujer</p>
@@ -202,7 +202,7 @@
                 </div>
             </div>
             <div class="product" data-name="Conjunto deportivo para mujer" data-price="179.90">
-                <img src="./images/producto8.jpg" alt="Conjunto deportivo para mujer">
+                <img src="/Public/imagenes/producto8.jpg" alt="Conjunto deportivo para mujer">
                 <div class="info">
                     <h3>MANGO</h3>
                     <p>Conjunto deportivo para mujer</p>
@@ -229,7 +229,7 @@
     </div>
     <div id="cartModal" class="modal">
         <div class="modal-content">
-            <img id="modalImage" src="./images/comprando.jpg" alt="Car Image" style="width: 240px; height: 240px;">
+            <img id="modalImage" src="/Public/imagenes/comprando.jpg" alt="Car Image" style="width: 240px; height: 240px;">
             <span class="close">&times;</span>
             <h3>Carrito de Compras</h3>
             <ul id="cartItems"></ul>
@@ -241,7 +241,6 @@
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
-    <script src="./JS/Dashboard.js"></script>
+    <script src="/Public/estilos/Dashboard2.js"></script>
 </body>
 </html>
-
