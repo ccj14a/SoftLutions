@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = '../Vista/CrearCuenta.php'; // Redirige a la página de inicio
     });
 });
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const logoutButton = document.getElementById('logoutButton');
 
