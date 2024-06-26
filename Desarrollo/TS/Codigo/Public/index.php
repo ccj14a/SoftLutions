@@ -18,6 +18,7 @@ $router->get('/',[PaginasController::class, 'index']);
 $router->get('/dashboard',[PaginasController::class, 'Dashboard2']);
 $router->get('/login',[PaginasController::class, 'Login']);
 $router->get('/registrarse',[PaginasController::class, 'CrearCuenta']);
+$router->get('/admin',[PaginasController::class, 'Admin']);
 
 
 // API DE PRODUCTOS

@@ -20,4 +20,7 @@ class PaginasController{
     public static function CrearCuenta(Router $router){
         $router->render('CrearCuenta');
     }
+    public static function Admin(Router $router){
+        $router->render('dashboard_admin');
+    }
 }

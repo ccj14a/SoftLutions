@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - TreeSolution</title>
-    <link rel="stylesheet" href="./Estilos/Dashboard_admin.css">
+    <link rel="stylesheet" href="./estilos/Dashboard_admin.css">
     <link rel="icon" href="./images/favicon-32x32.png" type="images">
 </head>
 <body>
@@ -215,6 +215,6 @@
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
-    <script src="./JS/Dashboard_admin.js"></script>
+    <script src="./scripts/Dashboard_admin.js"></script>
 </body>
 </html>
