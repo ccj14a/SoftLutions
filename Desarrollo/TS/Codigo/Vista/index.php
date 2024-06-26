@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    #<!-- fzxczxczczxcqqqqqaaaaaaaaaaaaaaaaa -->
+    <!-- fzxczxczczxcqqqqqaaaaaaaaaaaaaaaaa -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TreeSolution</title>
-    <link rel="stylesheet" href="/Public/estilos/index.css">
+    <link rel="stylesheet" href="/estilos/index.css">
 </head>
 <body>
     <header class="header">
@@ -19,10 +19,10 @@
         </nav>
         <div class="header__actions">
             <input type="text" class="header__search" placeholder="Buscar productos">
-            <button class="header__search-button"><img src="/Public/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
+            <button class="header__search-button"><img src="/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
             <button class="header__button" id="registrarButton">Registrarse</button>
             <button class="header__button" id="loginButton">Iniciar Sesión</button>
-            <button class="header__cart-button"><img src="/Public/imagenes/cart-icon.png" alt="Carrito" class="header__cart-icon"></button>
+            <button class="header__cart-button"><img src="/imagenes/cart-icon.png" alt="Carrito" class="header__cart-icon"></button>
         </div>
     </header>
     <main class="main">
@@ -38,7 +38,7 @@
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
-    <script src="/Public/scripts/index.js"></script>
+    <script src="/scripts/index.js"></script>
 </body>
 </html>
 

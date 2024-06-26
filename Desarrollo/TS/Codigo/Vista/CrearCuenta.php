@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Treesolution</title>
-    <link rel="stylesheet" href="/Public/estilos/CrearCuenta.css">
+    <link rel="stylesheet" href="/estilos/CrearCuenta.css">
     
 </head>
 <body>
@@ -39,6 +39,6 @@
             <button type="button" id="volverLogin">Volver al Login</button>
         </form>
     </div>
-    <script src="./JS/NuevoRegistro.js"></script>
+    <script src="./scripts/NuevoRegistro.js"></script>
 </body>
 </html>
