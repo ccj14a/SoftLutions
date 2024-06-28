@@ -1,366 +1,235 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: tiendavirtual.gcs
--- ------------------------------------------------------
--- Server version	8.0.34
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+-- -----------------------------------------------------
+-- Schema TreeSolutionDB
+-- -----------------------------------------------------
 
---
--- Table structure for table `administradores`
---
+-- -----------------------------------------------------
+-- Schema TreeSolutionDB
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `TreeSolutionDB` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema treesolutiondb
+-- -----------------------------------------------------
 
-DROP TABLE IF EXISTS `administradores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `administradores` (
-  `ID_Administrador` int NOT NULL AUTO_INCREMENT,
-  `ID_Usuario` int DEFAULT NULL,
-  PRIMARY KEY (`ID_Administrador`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `administradores_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- -----------------------------------------------------
+-- Schema treesolutiondb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `treesolutiondb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `TreeSolutionDB` ;
 
---
--- Dumping data for table `administradores`
---
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`usuarios` (
+  `ID_Usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(50) NOT NULL,
+  `apellido` VARCHAR(50) NOT NULL,
+  `dni` VARCHAR(10) NOT NULL,
+  `telefono` VARCHAR(20) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `contrasena` VARCHAR(10) NOT NULL,
+  `usuario` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID_Usuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-LOCK TABLES `administradores` WRITE;
-/*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `clientes`
---
+-- -----------------------------------------------------
+-- Table `TreeSolutionDB`.`empleados`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `TreeSolutionDB`.`empleados` (
+  `ID_Empleado` INT NOT NULL AUTO_INCREMENT,
+  `ID_Usuario` INT NOT NULL,
+  `tipo` ENUM('Administrador', 'Empleado') NOT NULL,
+  PRIMARY KEY (`ID_Empleado`),
+  INDEX `fk_empleados_usuarios_idx` (`ID_Usuario` ASC) VISIBLE,
+  CONSTRAINT `fk_empleados_usuarios`
+    FOREIGN KEY (`ID_Usuario`)
+    REFERENCES `treesolutiondb`.`usuarios` (`ID_Usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-DROP TABLE IF EXISTS `clientes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `clientes` (
-  `ID_Cliente` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(255) DEFAULT NULL,
-  `Apellido` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Ciudad` varchar(100) DEFAULT NULL,
-  `ID_Usuario` int DEFAULT NULL,
+USE `treesolutiondb` ;
+
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`clientes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`clientes` (
+  `ID_Cliente` INT NOT NULL AUTO_INCREMENT,
+  `ID_Usuario` INT NOT NULL,
+  `direccion` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_Cliente`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `ID_Usuario` (`ID_Usuario` ASC) VISIBLE,
+  CONSTRAINT `clientes_ibfk_1`
+    FOREIGN KEY (`ID_Usuario`)
+    REFERENCES `treesolutiondb`.`usuarios` (`ID_Usuario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `clientes`
---
 
-LOCK TABLES `clientes` WRITE;
-/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
-UNLOCK TABLES;
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`pedidos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`pedidos` (
+  `ID_Pedido` INT NOT NULL AUTO_INCREMENT,
+  `fechaPedido` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `estadoPedido` VARCHAR(50) NULL DEFAULT NULL,
+  `totalPedido` DECIMAL(10,2) NULL DEFAULT NULL,
+  PRIMARY KEY (`ID_Pedido`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
---
--- Table structure for table `detallespedido`
---
 
-DROP TABLE IF EXISTS `detallespedido`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `detallespedido` (
-  `ID_DetallePedido` int NOT NULL AUTO_INCREMENT,
-  `Cantidad` int DEFAULT NULL,
-  `PrecioUnitario` decimal(10,2) DEFAULT NULL,
-  `Subtotal` decimal(10,2) DEFAULT NULL,
-  `ID_Pedido` int DEFAULT NULL,
-  `ID_Producto` int DEFAULT NULL,
-  `ID_Proveedor` int DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`productos` (
+  `ID_Producto` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(255) NOT NULL,
+  `descripcion` VARCHAR(255) NULL DEFAULT NULL,
+  `precio` DECIMAL(10,2) NOT NULL,
+  `imagen` VARCHAR(255) NULL,
+  PRIMARY KEY (`ID_Producto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`detallespedido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`detallespedido` (
+  `ID_DetallePedido` INT NOT NULL AUTO_INCREMENT,
+  `ID_Pedido` INT NOT NULL,
+  `ID_Producto` INT NOT NULL,
+  `cantidad` INT NULL DEFAULT NULL,
+  `precioUnitario` DECIMAL(10,2) NULL DEFAULT NULL,
+  `subtotal` DECIMAL(10,2) NULL DEFAULT NULL,
   PRIMARY KEY (`ID_DetallePedido`),
-  KEY `ID_Proveedor` (`ID_Proveedor`),
-  KEY `ID_Pedido` (`ID_Pedido`),
-  KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `detallespedido_ibfk_1` FOREIGN KEY (`ID_Proveedor`) REFERENCES `proveedores` (`ID_Proveedor`),
-  CONSTRAINT `detallespedido_ibfk_2` FOREIGN KEY (`ID_Pedido`) REFERENCES `pedidos` (`ID_Pedido`),
-  CONSTRAINT `detallespedido_ibfk_3` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `ID_Pedido` (`ID_Pedido` ASC) VISIBLE,
+  INDEX `ID_Producto` (`ID_Producto` ASC) VISIBLE,
+  CONSTRAINT `detallespedido_ibfk_2`
+    FOREIGN KEY (`ID_Pedido`)
+    REFERENCES `treesolutiondb`.`pedidos` (`ID_Pedido`),
+  CONSTRAINT `detallespedido_ibfk_3`
+    FOREIGN KEY (`ID_Producto`)
+    REFERENCES `treesolutiondb`.`productos` (`ID_Producto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `detallespedido`
---
 
-LOCK TABLES `detallespedido` WRITE;
-/*!40000 ALTER TABLE `detallespedido` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detallespedido` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `detalleventa`
---
-
-DROP TABLE IF EXISTS `detalleventa`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `detalleventa` (
-  `ID_DetalleVenta` int NOT NULL AUTO_INCREMENT,
-  `Cantidad` int DEFAULT NULL,
-  `Precio_Unitario` decimal(10,2) DEFAULT NULL,
-  `Subtotal` decimal(10,2) DEFAULT NULL,
-  `ID_Venta` int DEFAULT NULL,
-  `ID_Producto` int DEFAULT NULL,
-  PRIMARY KEY (`ID_DetalleVenta`),
-  KEY `ID_Venta` (`ID_Venta`),
-  KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `detalleventa_ibfk_1` FOREIGN KEY (`ID_Venta`) REFERENCES `ventas` (`ID_Venta`),
-  CONSTRAINT `detalleventa_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `detalleventa`
---
-
-LOCK TABLES `detalleventa` WRITE;
-/*!40000 ALTER TABLE `detalleventa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `detalleventa` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `pedidos`
---
-
-DROP TABLE IF EXISTS `pedidos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pedidos` (
-  `ID_Pedido` int NOT NULL AUTO_INCREMENT,
-  `FechaPedido` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `EstadoPedido` varchar(50) DEFAULT NULL,
-  `TotalPedido` decimal(10,2) DEFAULT NULL,
-  `ID_Proveedor` int DEFAULT NULL,
-  PRIMARY KEY (`ID_Pedido`),
-  KEY `ID_Proveedor` (`ID_Proveedor`),
-  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`ID_Proveedor`) REFERENCES `proveedores` (`ID_Proveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pedidos`
---
-
-LOCK TABLES `pedidos` WRITE;
-/*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `productos`
---
-
-DROP TABLE IF EXISTS `productos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `productos` (
-  `ID_Producto` int NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(255) DEFAULT NULL,
-  `Descripcion` text,
-  `Precio` decimal(10,2) DEFAULT NULL,
-  `Stock` int DEFAULT NULL,
-  `ID_Proveedor` int DEFAULT NULL,
-  PRIMARY KEY (`ID_Producto`),
-  KEY `ID_Proveedor` (`ID_Proveedor`),
-  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Proveedor`) REFERENCES `proveedores` (`ID_Proveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productos`
---
-
-LOCK TABLES `productos` WRITE;
-/*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `productosencarrito`
---
-
-DROP TABLE IF EXISTS `productosencarrito`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `productosencarrito` (
-  `ID_ProductoCarrito` int NOT NULL AUTO_INCREMENT,
-  `Cantidad` int DEFAULT NULL,
-  `ID_Usuario` int DEFAULT NULL,
-  `ID_Producto` int DEFAULT NULL,
-  PRIMARY KEY (`ID_ProductoCarrito`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `productosencarrito_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`),
-  CONSTRAINT `productosencarrito_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productosencarrito`
---
-
-LOCK TABLES `productosencarrito` WRITE;
-/*!40000 ALTER TABLE `productosencarrito` DISABLE KEYS */;
-/*!40000 ALTER TABLE `productosencarrito` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `proveedores`
---
-
-DROP TABLE IF EXISTS `proveedores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `proveedores` (
-  `ID_Proveedor` int NOT NULL AUTO_INCREMENT,
-  `NombreEmpresa` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Ciudad` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`ID_Proveedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `proveedores`
---
-
-LOCK TABLES `proveedores` WRITE;
-/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `registrosactividad`
---
-
-DROP TABLE IF EXISTS `registrosactividad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `registrosactividad` (
-  `ID_Registro` int NOT NULL AUTO_INCREMENT,
-  `FechaHora` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `DescripcionActividad` text,
-  `ID_Usuario` int DEFAULT NULL,
-  PRIMARY KEY (`ID_Registro`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `registrosactividad_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`ID_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `registrosactividad`
---
-
-LOCK TABLES `registrosactividad` WRITE;
-/*!40000 ALTER TABLE `registrosactividad` DISABLE KEYS */;
-/*!40000 ALTER TABLE `registrosactividad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipopago`
---
-
-DROP TABLE IF EXISTS `tipopago`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipopago` (
-  `ID_TipoPago` int NOT NULL AUTO_INCREMENT,
-  `Tipo` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID_TipoPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipopago`
---
-
-LOCK TABLES `tipopago` WRITE;
-/*!40000 ALTER TABLE `tipopago` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipopago` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `usuarios`
---
-
-DROP TABLE IF EXISTS `usuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuarios` (
-  `ID_Usuario` int NOT NULL AUTO_INCREMENT,
-  `NombreUsuario` varchar(255) DEFAULT NULL,
-  `Contrasena` varchar(255) DEFAULT NULL,
-  `Rol` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `usuarios`
---
-
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ventas`
---
-
-DROP TABLE IF EXISTS `ventas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ventas` (
-  `ID_Venta` int NOT NULL AUTO_INCREMENT,
-  `FechaVenta` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `Total` decimal(10,2) DEFAULT NULL,
-  `ID_Cliente` int DEFAULT NULL,
-  `ID_TipoPago` int DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`ventas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`ventas` (
+  `ID_Venta` INT NOT NULL AUTO_INCREMENT,
+  `ID_Cliente` INT NOT NULL,
+  `ID_Empleado` INT NOT NULL,
+  `fechaVenta` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `total` DECIMAL(10,2) NOT NULL,
+  `tipoPago` ENUM('Efectivo', 'Tarjeta') NOT NULL,
   PRIMARY KEY (`ID_Venta`),
-  KEY `ID_Cliente` (`ID_Cliente`),
-  KEY `ID_TipoPago` (`ID_TipoPago`),
-  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_Cliente`) REFERENCES `clientes` (`ID_Cliente`),
-  CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`ID_TipoPago`) REFERENCES `tipopago` (`ID_TipoPago`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  INDEX `ID_Cliente` (`ID_Cliente` ASC) VISIBLE,
+  INDEX `fk_ventas_empleados1_idx` (`ID_Empleado` ASC) VISIBLE,
+  CONSTRAINT `ventas_ibfk_1`
+    FOREIGN KEY (`ID_Cliente`)
+    REFERENCES `treesolutiondb`.`clientes` (`ID_Cliente`),
+  CONSTRAINT `fk_ventas_empleados1`
+    FOREIGN KEY (`ID_Empleado`)
+    REFERENCES `TreeSolutionDB`.`empleados` (`ID_Empleado`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `ventas`
---
 
-LOCK TABLES `ventas` WRITE;
-/*!40000 ALTER TABLE `ventas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ventas` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+-- -----------------------------------------------------
+-- Table `treesolutiondb`.`detalleventa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `treesolutiondb`.`detalleventa` (
+  `ID_DetalleVenta` INT NOT NULL AUTO_INCREMENT,
+  `ID_Venta` INT NOT NULL,
+  `ID_Producto` INT NOT NULL,
+  `cantidad` INT NOT NULL,
+  `precio_Unitario` DECIMAL(10,2) NULL DEFAULT NULL,
+  `subtotal` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`ID_DetalleVenta`),
+  INDEX `ID_Venta` (`ID_Venta` ASC) VISIBLE,
+  INDEX `ID_Producto` (`ID_Producto` ASC) VISIBLE,
+  CONSTRAINT `detalleventa_ibfk_1`
+    FOREIGN KEY (`ID_Venta`)
+    REFERENCES `treesolutiondb`.`ventas` (`ID_Venta`),
+  CONSTRAINT `detalleventa_ibfk_2`
+    FOREIGN KEY (`ID_Producto`)
+    REFERENCES `treesolutiondb`.`productos` (`ID_Producto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-10  8:28:22
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+
+
+-- Insertando datos iniciales en las tablas
+
+INSERT INTO `usuarios` (`nombre`, `apellido`, `dni`, `telefono`, `email`, `contrasena`, `usuario`)
+VALUES
+  ('Nombre1', 'Apellido1', '12345678A', '1234567890', 'usuario1@example.com', 'password1', 'usuario1'),
+  ('Nombre2', 'Apellido2', '12345678B', '1234567891', 'usuario2@example.com', 'password2', 'usuario2'),
+  ('Nombre3', 'Apellido3', '12345678C', '1234567892', 'usuario3@example.com', 'password3', 'usuario3'),
+  ('Nombre4', 'Apellido4', '12345678D', '1234567893', 'usuario4@example.com', 'password4', 'usuario4'),
+  ('Nombre5', 'Apellido5', '12345678E', '1234567894', 'usuario5@example.com', 'password5', 'usuario5'),
+  ('Nombre6', 'Apellido6', '12345678F', '1234567895', 'usuario6@example.com', 'password6', 'usuario6'),
+  ('Nombre7', 'Apellido7', '12345678G', '1234567896', 'usuario7@example.com', 'password7', 'usuario7'),
+  ('Nombre8', 'Apellido8', '12345678H', '1234567897', 'usuario8@example.com', 'password8', 'usuario8'),
+  ('Nombre9', 'Apellido9', '12345678I', '1234567898', 'usuario9@example.com', 'password9', 'usuario9'),
+  ('Nombre10', 'Apellido10', '12345678J', '1234567899', 'usuario10@example.com', '1234', 'empleado'),
+  ('Germán', 'Callupe', '12345678K', '1234567800', 'german@example.com', '1234', 'german');
+
+-- Insert data into empleados table (Administrador)
+INSERT INTO `empleados` (`ID_Usuario`, `tipo`)
+SELECT ID_Usuario, 'Administrador'
+FROM `usuarios`
+WHERE usuario = 'german' AND contrasena = '1234';
+
+-- Insert data into empleados table (Empleado)
+INSERT INTO `empleados` (`ID_Usuario`, `tipo`)
+SELECT ID_Usuario, 'Empleado'
+FROM `usuarios`
+WHERE usuario = 'empleado' AND contrasena = '1234'
+LIMIT 1;
+
+-- Insert data into clientes table
+INSERT INTO `clientes` (`ID_Usuario`, `direccion`)
+VALUES
+  ((SELECT ID_Usuario FROM `usuarios` WHERE usuario = 'usuario1'), 'Dirección Cliente 1'),
+  ((SELECT ID_Usuario FROM `usuarios` WHERE usuario = 'usuario2'), 'Dirección Cliente 2');
+
+-- Insert data into productos table
+INSERT INTO `productos` (`nombre`, `descripcion`, `precio`)
+VALUES
+  ('Camiseta deportiva', 'Camiseta transpirable para deportes', 19.99),
+  ('Pantalón deportivo', 'Pantalón cómodo para entrenamiento', 29.99),
+  ('Zapatillas de running', 'Zapatillas ligeras y amortiguadas', 59.99),
+  ('Calcetines deportivos', 'Calcetines ergonómicos para deporte', 9.99),
+  ('Shorts deportivos', 'Shorts de secado rápido', 24.99),
+  ('Sudadera deportiva', 'Sudadera ligera para actividades al aire libre', 39.99),
+  ('Chaqueta cortavientos', 'Chaqueta impermeable y transpirable', 49.99),
+  ('Mallas deportivas', 'Mallas compresivas para entrenamiento', 34.99),
+  ('Gorra deportiva', 'Gorra ajustable para protección solar', 14.99),
+  ('Bolsa deportiva', 'Bolsa resistente para llevar equipo deportivo', 29.99);
+
