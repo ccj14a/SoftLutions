@@ -69,6 +69,14 @@ class ActiveRecord{
         return $resultado;
     }
 
+    public function obtenerNombreId(){
+        if( !isset($this->nombreDeId)){
+            $this->id = 'id';
+            return $this->id ;
+        }else{
+            return $this->nombreDeId;
+        }
+    }
     //!BUSCAR REGISTROS
     // Busca un registro por su id
     public static function where($columna, $valor) {
@@ -82,7 +90,8 @@ class ActiveRecord{
     public function atributos() {
         $atributos = [];
         foreach(static::$columnasDB as $columna) {
-            if($columna === 'id') continue;
+            $columnName = $this->obtenerNombreId();
+            if($columna === $columnName ) continue;
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;

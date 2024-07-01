@@ -11,6 +11,7 @@ $db = conectarDb();
 
 use Model\ActiveRecord;
 ActiveRecord::setDB($db);
+
 $producto = new Producto;
 
 Producto::setDB($db);

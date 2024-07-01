@@ -3,7 +3,7 @@
 function conectarDb(): mysqli
 {
     $db = new mysqli(
-        "localhost","root","root","treesolutions"
+        "localhost","root","root","treesolutiondb"
     );
 
     $db->set_charset('utf8');

@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" class="input-custom" required />
+                        <input type="password" id="password" name="contrasena" placeholder="Escribe tu contraseña" class="input-custom" required />
                         <i class="fas fa-eye-slash" id="togglePassword"></i>
                     </div>
                 </div>

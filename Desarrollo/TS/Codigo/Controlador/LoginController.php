@@ -16,18 +16,20 @@ class LoginController{
 
             //buscamos un Usuario donde el email sea el ingresado por form
             $usuario = User::where('email', $usuariotmp->email);
+            // debuguear($usuario);
 
             if($usuario){
                 //Comprobamos el password del usuario correspondiante al Email, con la contraseña ingresada en form:
-                if($usuario->comprobarPassword($usuariotmp->password)){
+                if($usuario->comprobarPassword($usuariotmp->contrasena)){
                     session_start();
                     $_SESSION['id'] = $usuario->id;
                     $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
                     $_SESSION['email'] = $usuario->email;
                     $_SESSION['login'] = true;
+                    
 
                     //redireccionar
-                    if($usuario->admin == "1"){
+                    if($usuario->usuario == "admin"){
                         $_SESSION['admin'] = true;
                         header('Location: /admin');
                     }else{
@@ -74,12 +76,16 @@ class LoginController{
             }else{
                 $resultado  = $usuariotmp->guardar();
                 if($resultado){
-                    debuguear('Usuario creado con exito');
+                    User::setAlerta('error', 'Usuario registrado con exito');
+                    $alertas = User::getAlertas();
+
+                    header('Location: /dashboard');
                 }
             }
+        }else{
+            $router->render('CrearCuenta');
         }
 
-        $router->render('CrearCuenta');
 
     }
 }

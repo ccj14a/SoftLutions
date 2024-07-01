@@ -25,7 +25,7 @@
             <input type="email" id="email" name="email" required>
 
             <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="contrasena" required>
 
             <label for="confirmarContrasena">Confirmar Contraseña</label>
             <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
