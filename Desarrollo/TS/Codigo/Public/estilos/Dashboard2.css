@@ -479,3 +479,7 @@ button[type="button"]:hover {
 .remove-item:hover {
     background-color: darkred;
 }
+
+.cart__item-titulo{
+    display: inline;
+}

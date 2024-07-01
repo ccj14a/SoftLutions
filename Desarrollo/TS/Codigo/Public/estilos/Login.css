@@ -5,7 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: url("../images/v24_166.png") no-repeat center center;
+    background: url("/imagenes/v24_166.png") no-repeat center center;
     background-color: #e9e9e9;
   }
   
@@ -158,3 +158,16 @@ body {
     text-decoration: underline;
   }
   
+
+/* Manejo de errore */
+
+.alerta{
+  width: 100%;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 1rem;
+}
+.alerta.error{
+  background-color: rgba(245, 88, 88, 0.979);
+  color: white;
+}

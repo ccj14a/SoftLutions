@@ -12,7 +12,7 @@
         <div class="header__logo">TreeSolution</div>
         <nav class="header__nav">
             <ul class="header__nav-list">
-                <li class="header__nav-item"><a href="#" class="header__nav-link" id="logoutButton">Cerrar Sesión</a></li>
+                <li class="header__nav-item"><a href="/logout" class="header__nav-link" id="logoutButton">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>

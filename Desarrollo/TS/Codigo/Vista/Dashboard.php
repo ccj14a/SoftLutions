@@ -24,7 +24,7 @@
             <img src="/imagenes/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
             <div class="dropdown-menu" id="userMenu">
                 <a href="perfil.html">Ver perfil</a>
-                <a href="Inicio.html" id="logout">Cerrar sesión</a>
+                <a href="/logout" id="logout">Cerrar sesión</a>
             </div>
             <div class="cart-icon-container">
                 <img src="/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">

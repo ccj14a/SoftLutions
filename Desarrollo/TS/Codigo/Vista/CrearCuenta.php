@@ -11,7 +11,7 @@
     <div class="container">
         <h1>¿Eres nuevo en TreeSolution?</h1>
         <p>Regístrate y disfruta de nuestros beneficios y una experiencia de compra más rápida y sencilla</p>
-        <form id="registrationForm">
+        <form id="registrationForm" method="POST">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" required>
 
@@ -21,11 +21,11 @@
             <label for="telefono">Teléfono</label>
             <input type="tel" id="telefono" name="telefono" required>
 
-            <label for="correo">Correo</label>
-            <input type="email" id="correo" name="correo" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
 
-            <label for="contrasena">Contraseña</label>
-            <input type="password" id="contrasena" name="contrasena" required>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
 
             <label for="confirmarContrasena">Confirmar Contraseña</label>
             <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
@@ -39,6 +39,6 @@
             <button type="button" id="volverLogin">Volver al Login</button>
         </form>
     </div>
-    <script src="./scripts/NuevoRegistro.js"></script>
+    <script src="/scripts/CrearCuenta.js"></script>
 </body>
 </html>

@@ -5,11 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const userIcon = document.querySelector('.header__action-icon');
   const userMenu = document.getElementById('userMenu');
   const cartIcon = document.getElementById('cartIcon');
+
   const cartModal = document.getElementById('cartModal');
+
   const cartItemsContainer = document.getElementById('cartItems');
   const totalPriceElement = document.getElementById('totalPrice');
   const cartCount = document.getElementById('cartCount');
+
   const productModal = document.getElementById('productModal');
+
+  const payModal = document.getElementById('payModal');
+
   const searchButton = document.getElementById('searchButton');
   const searchInput = document.getElementById('searchInput');
   const productList = document.getElementById('productList');
@@ -42,10 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Ocultar el modal al hacer clic fuera de él
-  window.addEventListener('click', function (event) {
-      if (event.target === cartModal || event.target === productModal) {
+  overlay.addEventListener('click', function (event) {
+      if (true) {
+          cartModal.style.display = 'none';
+          productModal.style.display = 'none';
+          payModal.style.display = 'none';
           event.target.style.display = 'none';
           overlay.style.display = 'none';
+
           document.body.style.overflow = '';
       }
   });
@@ -86,6 +96,72 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = '';
   });
 
+
+  let botonPagar = document.getElementById('pagarPedido')
+  const pedido ={
+    nombre:'',
+    direccion: '',
+    celular: '',
+    productos: [],
+    total: ''
+
+  }
+
+  botonPagar.addEventListener('click', ()=>{
+    let contenedorDatos = document.getElementById('payModal');
+    var inputs = document.querySelectorAll("#payModal input");
+    var listaProductos = document.querySelectorAll(".cart__item");
+    var totalPedido = document.querySelector("#totalPrice");
+    // const { nombre, direccion, celular, productos} = pedido;
+
+    listaProductos = Array.from(listaProductos).map( function(item) {
+      let producto = {
+        nombre: '',
+        cantidad:''
+      }
+      // Eliminar cualquier espacio en blanco adicional
+      item = item.textContent.replace("Quitar", "").trim();
+      // Dividir el texto en partes
+      let parts = item.split(" - ");
+      // Obtener el nombre del producto
+      let nombre = parts[0];
+      // Obtener la parte que contiene el precio y la cantidad
+      let precioYCantidad = parts[1].split(" x ");
+      // Convertir el precio a número
+      let precio = parseFloat(precioYCantidad[0].replace("S/ ", ""));
+      // Convertir la cantidad a número
+      let cantidad = parseInt(precioYCantidad[1]);
+
+      // Devolver un objeto con los datos
+      producto.nombre = nombre;
+      producto.cantidad = cantidad;  
+      return producto
+    });
+
+    pedido.nombre = inputs[0].value;
+    pedido.direccion = inputs[1].value;
+    pedido.celular = inputs[2].value;
+    pedido.productos = listaProductos;
+    pedido.total = totalPedido.textContent;
+
+    const datos  = new FormData();
+    datos.append('nombre', pedido.nombre)
+    datos.append('direccion', pedido.direccion)
+    datos.append('celular', pedido.celular)
+    datos.append('productos',  JSON.stringify(pedido.productos))
+    datos.append('total', pedido.total)
+
+    console.log([...datos]);
+
+    alert('Gracias por su compra');
+        cart = [];
+        updateCart();
+        payModal.style.display ='none';
+        cartModal.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+  })
+
   // Actualizar carrito
   function updateCart() {
       cartItemsContainer.innerHTML = '';
@@ -94,7 +170,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       cart.forEach(product => {
           const item = document.createElement('li');
-          item.innerHTML = `${product.name} - S/ ${product.price.toFixed(2)} x ${product.quantity}
+          item.classList.add('cart__item');
+
+          item.innerHTML = `<h5 class="cart__item-titulo">${product.name}</h5> - S/ ${product.price.toFixed(2)} x ${product.quantity}
           <button class="remove-item" data-name="${product.name}">Quitar</button>`;
           cartItemsContainer.appendChild(item);
           total += product.price * product.quantity;
@@ -134,12 +212,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Pagar
   document.getElementById('checkout').addEventListener('click', function () {
-      alert('Gracias por su compra');
-      cart = [];
-      updateCart();
+      
+      
+      payModal.style.display ='block'
       cartModal.style.display = 'none';
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
+      if(false){
+        cart = [];
+        updateCart();
+        
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      
   });
 
   // Cancelar
@@ -273,6 +357,7 @@ slider.addEventListener('mouseenter', () => {
 slider.addEventListener('mouseleave', () => {
   slideInterval = setInterval(autoSlide, 3000);
 });
+
 //animacion
 document.addEventListener("DOMContentLoaded", function() {
   var tituloAnimado = document.getElementById('tituloAnimado');

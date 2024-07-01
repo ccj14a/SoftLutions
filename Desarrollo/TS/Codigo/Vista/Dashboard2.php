@@ -26,7 +26,7 @@
             <div class="dropdown-menu" id="userMenu">
                 <a href="#" id="editarPerfil">Editar perfil</a>
                 <a href="#" id="verPerfil">Ver perfil</a>
-                <a href="Inicio.html" id="logout">Cerrar sesión</a>
+                <a href="/logout" id="logout">Cerrar sesión</a>
             </div>
             <div class="cart-icon-container">
                 <img src="/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
@@ -103,7 +103,10 @@
     </div>
 </div>
 
-    <h1 class="titulo" id="tituloAnimado">Bienvenido a nuestra tienda de ventas</h1>
+
+    <h1 class="titulo" id="tituloAnimado">
+        Bienvenido a nuestra tienda de ventas
+    </h1>
     <br/>
     <div class="slider-container">
         <div class="slider">
@@ -118,6 +121,7 @@
         </div>
         <div class="dots-container"></div>
       </div>
+
     <main class="container">
         <div class="sort-container">
             <label for="sortOptions">Ordenar por:</label>
@@ -215,6 +219,8 @@
             </div>
         </div>
     </main>
+
+
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -238,6 +244,20 @@
             <button id="cancel">Cancelar</button>
         </div>
     </div>
+
+    <div id="payModal" class="modal">
+        <div class="modal-content">
+            <input class="payInput payInput-nombre" type="text" placeholder="Ingrese su nombre" required>
+            <input class="payInput payInput-direccion" type="text" placeholder="Ingrese direccion" required>
+            <input class="payInput payInput-telefono" type="number" placeholder="Ingrese Numero de Celular" required>
+            <input class="payInput payInput-tarjeta" type="numer" placeholder="Ingrese Numero de tarjeta de credito" required>
+            <input type="number" class="payInput payInput-fechaVenc" placeholder="mm/yy" required>
+            <input type="number" class="payInput payInput-cod" placeholder="csv" required>
+
+            <button id="pagarPedido">Pagar</button>
+        </div>
+    </div>
+
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
