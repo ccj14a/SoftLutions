@@ -171,3 +171,7 @@ body {
   background-color: rgba(245, 88, 88, 0.979);
   color: white;
 }
+.alerta.success{
+  background-color: rgb(39, 201, 112);
+  color: white;
+}

@@ -28,7 +28,9 @@ $router->get('/registrarse',[LoginController::class, 'CrearCuenta']);
 $router->post('/registrarse',[LoginController::class, 'CrearCuenta']);
 
 
-// API DE PRODUCTOS
+// API 
 $router->get('/api/productos',[APIController::class, 'index']);
+$router->post('/api/pedido', [APIController::class, 'crearPedido']);
+
 
 $router->comprobarRutas();

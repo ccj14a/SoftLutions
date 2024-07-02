@@ -38,4 +38,7 @@ class User extends ActiveRecord {
             return false;
         }
     }
+
+    
+
 }

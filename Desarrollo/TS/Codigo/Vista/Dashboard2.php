@@ -133,7 +133,7 @@
         </div>
 
         <div id="productList" class="product-list">
-            <div class="product" data-name="Polo deportivo azul" data-price="49.90">
+            <div class="product" data-id= 1 data-name="Polo deportivo azul" data-price="49.90">
                 <img src="/imagenes/producto1.jpg" alt="Polo deportivo azul">
                 <div class="info">
                     <h3>GENÉRICO</h3>
@@ -142,7 +142,7 @@
                     <p>S/ 49.90</p>
                 </div>
             </div>
-            <div class="product" data-name="Polo deportivo negro" data-price="49.90">
+            <div class="product" data-id= 2 data-name="Polo deportivo negro" data-price="49.90">
                 <img src="/imagenes/producto2.jpg" alt="Polo deportivo negro">
                 <div class="info">
                     <h3>Nike</h3>
@@ -154,7 +154,7 @@
                     </p>
                 </div>
             </div>
-            <div class="product" data-name="Short deportivo negro" data-price="42">
+            <div class="product" data-id= 3 data-name="Short deportivo negro" data-price="42">
                 <img src="/imagenes/producto3.jpg" alt="Short deportivo negro">
                 <div class="info">
                     <h3>Puma</h3>
@@ -163,7 +163,7 @@
                     <p>S/ 42</p>
                 </div>
             </div>
-            <div class="product" data-name="Casaca Hombre azul" data-price="119.90">
+            <div class="product" data-id= 4 data-name="Casaca Hombre azul" data-price="119.90">
                 <img src="/imagenes/producto4.jpg" alt="Casaca Hombre azul">
                 <div class="info">
                     <h3>BEARCLIFF</h3>
@@ -172,7 +172,7 @@
                     <p>S/ 119.90</p>
                 </div>
             </div>
-            <div class="product" data-name="Zapatilla runner" data-price="129.90">
+            <div class="product" data-id= 5 data-name="Zapatilla runner" data-price="129.90">
                 <img src="/imagenes/producto5.jpg" alt="Zapatilla runner">
                 <div class="info">
                     <h3>GENÉRICO</h3>
@@ -184,7 +184,7 @@
                     </p>
                 </div>
             </div>
-            <div class="product" data-name="Zapatilla runner blanca" data-price="159.90">
+            <div class="product" data-id= 6 data-name="Zapatilla runner blanca" data-price="159.90">
                 <img src="/imagenes/producto6.jpg" alt="Zapatilla runner blanca">
                 <div class="info">
                     <h3>GENÉRICO</h3>
@@ -196,7 +196,7 @@
                     </p>
                 </div>
             </div>
-            <div class="product" data-name="Casaca roja para mujer" data-price="120">
+            <div class="product" data-id= 7 data-name="Casaca roja para mujer" data-price="120">
                 <img src="/imagenes/producto7.jpg" alt="Casaca roja para mujer">
                 <div class="info">
                     <h3>GENÉRICO</h3>
@@ -205,7 +205,7 @@
                     <p>S/ 120</p>
                 </div>
             </div>
-            <div class="product" data-name="Conjunto deportivo para mujer" data-price="179.90">
+            <div class="product" data-id= 8 data-name="Conjunto deportivo para mujer" data-price="179.90">
                 <img src="/imagenes/producto8.jpg" alt="Conjunto deportivo para mujer">
                 <div class="info">
                     <h3>MANGO</h3>
@@ -261,6 +261,8 @@
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
+    
+    <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
     <script src="/scripts/Dashboard2.js"></script>
 </body>
 </html>

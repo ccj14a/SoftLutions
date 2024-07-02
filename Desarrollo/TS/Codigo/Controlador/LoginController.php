@@ -3,7 +3,7 @@
 namespace Controllers;
 use MVC\Router;
 use Model\User;
-
+use Model\Cliente;
 
 class LoginController{
 
@@ -13,20 +13,17 @@ class LoginController{
         if( $_SERVER['REQUEST_METHOD'] === 'POST'){
             //creamos un objeto User con los datos enviados a trabes del formulario(post)
             $usuariotmp = new User($_POST);
-
-            //buscamos un Usuario donde el email sea el ingresado por form
+            //buscamos un Usuario donde el email sea igaul al ingresado por form
             $usuario = User::where('email', $usuariotmp->email);
-            // debuguear($usuario);
 
             if($usuario){
                 //Comprobamos el password del usuario correspondiante al Email, con la contraseña ingresada en form:
                 if($usuario->comprobarPassword($usuariotmp->contrasena)){
                     session_start();
-                    $_SESSION['id'] = $usuario->id;
+                    $_SESSION['id'] = $usuario->ID_Usuario;
                     $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
                     $_SESSION['email'] = $usuario->email;
                     $_SESSION['login'] = true;
-                    
 
                     //redireccionar
                     if($usuario->usuario == "admin"){
@@ -43,10 +40,14 @@ class LoginController{
                 User::setAlerta('error', 'Correo no registrado');
             }
 
-
         }
-        $alertas = User::getAlertas();
+        if (isset($_GET['estado'])) {
+            $estado = $_GET['estado'];
+            if($estado = "registroExitoso")
+            User::setAlerta('success', 'Usuario registrado exitosamente');
+        }
 
+        $alertas = User::getAlertas();
 
         $router->render('Login', [
             'alertas' => $alertas
@@ -75,11 +76,21 @@ class LoginController{
                 debuguear('Correo ya registrado');
             }else{
                 $resultado  = $usuariotmp->guardar();
-                if($resultado){
-                    User::setAlerta('error', 'Usuario registrado con exito');
-                    $alertas = User::getAlertas();
 
-                    header('Location: /dashboard');
+                if($usuariotmp->usuario == 'cliente'){
+                    $datosCliente = [
+                        'ID_Cliente' => '',
+                        'ID_Usuario' => $resultado['id'],
+                        'direccion'=> 'casa'
+                    ];
+                    $clientetmp = new Cliente($datosCliente);
+                    $resultado2 = $clientetmp->guardar();    
+                    
+                }
+
+
+                if($resultado){
+                    header('Location: /login?estado=registroExitoso');
                 }
             }
         }else{

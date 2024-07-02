@@ -41,7 +41,7 @@
                 <button type="button" class="facebook">Facebook</button>
             </div>
             <div class="register-link">
-                <p>No tienes una cuenta? <a href="/registrarse" target="_blank">Regístrate</a></p>
+                <p>No tienes una cuenta? <a href="/registrarse">Regístrate</a></p>
             </div>
         </div>
     </div>

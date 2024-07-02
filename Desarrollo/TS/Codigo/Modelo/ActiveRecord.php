@@ -91,6 +91,7 @@ class ActiveRecord{
         $atributos = [];
         foreach(static::$columnasDB as $columna) {
             $columnName = $this->obtenerNombreId();
+
             if($columna === $columnName ) continue;
             $atributos[$columna] = $this->$columna;
         }
@@ -121,13 +122,29 @@ class ActiveRecord{
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
 
-        // Insertar en la base de datos
-        $query = " INSERT INTO " . static::$tabla . " ( ";
-        $query .= join(', ', array_keys($atributos));
-        $query .= " ) VALUES (' "; 
-        $query .= join("', '", array_values($atributos));
-        $query .= " ') ";
+        // // Insertar en la base de datos
+        // $query = " INSERT INTO " . static::$tabla . " ( ";
+        // $query .= join(', ', array_keys($atributos));
+        // $query .= " ) VALUES (' "; 
+        // $query .= join("', '", array_values($atributos));
+        // $query .= " ') ";
         
+        //? Construir la consulta
+        $columnas = join(', ', array_keys($atributos));
+        $valores = [];
+        foreach ($atributos as $key => $value) {
+            // Si el valor es null, agregar NULL a la consulta
+            if (is_null($value)) {
+                $valores[] = "NULL";
+            } else {
+                $valores[] = "'{$value}'";
+            }
+        }
+        $valores = join(', ', $valores);
+
+        // Insertar en la base de datos
+        $query = "INSERT INTO " . static::$tabla . " ({$columnas}) VALUES ({$valores})";
+
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
