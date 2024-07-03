@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
-    <link href="/Public/estilos/Login.css" rel="stylesheet" />
+    <link href="/estilos/Login.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <title>Login</title>
 </head>
@@ -12,8 +12,12 @@
     <div class="container">
         <div class="image"></div>
         <div class="form-container">
+
+        <?php 
+            include __DIR__."/bases/alertas.php";
+        ?>
             <h1>Inicio de Sesión</h1>
-            <form id="loginForm">
+            <form id="loginForm" method="POST">
                 <div class="form-group">
                     <label for="username">Email</label>
                     <input type="text" id="email" name="email" placeholder="Escribe tu email" required />
@@ -21,7 +25,7 @@
                 <div class="form-group">
                     <label for="password">Contraseña</label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" class="input-custom" required />
+                        <input type="password" id="password" name="contrasena" placeholder="Escribe tu contraseña" class="input-custom" required />
                         <i class="fas fa-eye-slash" id="togglePassword"></i>
                     </div>
                 </div>
@@ -37,7 +41,7 @@
                 <button type="button" class="facebook">Facebook</button>
             </div>
             <div class="register-link">
-                <p>No tienes una cuenta? <a href="CrearCuenta.html" target="_blank">Regístrate</a></p>
+                <p>No tienes una cuenta? <a href="/registrarse">Regístrate</a></p>
             </div>
         </div>
     </div>

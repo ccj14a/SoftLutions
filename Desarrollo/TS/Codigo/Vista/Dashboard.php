@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/Public/estilos/Dashboard.css">
+    <link rel="stylesheet" href="/estilos/Dashboard.css">
 </head>
 <body>
     <header class="header">
         <div class="header__logo">TreeSolution</div>
         <nav class="header__nav">
             <ul class="header__nav-list">
-                <li class="header__nav-item"><a href="#" class="header__nav-link">Inicio</a></li>
+                <li class="header__nav-item"><a href="/" class="header__nav-link">Inicio</a></li>
                 <li class="header__nav-item"><a href="#" class="header__nav-link">Sobre nosotros</a></li>
                 <li class="header__nav-item"><a href="#" class="header__nav-link">Contáctanos</a></li>
             </ul>
         </nav>
         <div class="header__search-container">
             <input type="text" class="header__search" placeholder="Buscar productos">
-            <button class="header__search-button"><img src="/Public/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
+            <button class="header__search-button"><img src="/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
         </div>
         <div class="header__actions">
-            <img src="/Public/imagenes/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
+            <img src="/imagenes/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
             <div class="dropdown-menu" id="userMenu">
                 <a href="perfil.html">Ver perfil</a>
-                <a href="Inicio.html" id="logout">Cerrar sesión</a>
+                <a href="/logout" id="logout">Cerrar sesión</a>
             </div>
             <div class="cart-icon-container">
-                <img src="/Public/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
+                <img src="/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
                 <span id="cartCount" class="cart-count">0</span>
             </div>
         </div>
@@ -35,7 +35,7 @@
  
     <main class="container">
         <div class="product" data-name="POLO BON STYLE SPACE" data-price="49.90">
-            <img src="/Public/imagenes/producto1.jpg" alt="Polo Bon Style Space">
+            <img src="/imagenes/producto1.jpg" alt="Polo Bon Style Space">
             <div class="info">
                 <h3>GENÉRICO</h3>
                 <p>POLO BON STYLE SPACE</p>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="product" data-name="POLO BON STYLE PANDA VEC" data-price="49.90">
-            <img src="/Public/imagenes/producto1.jpg" alt="Polo Bon Style Panda Vec">
+            <img src="/imagenes/producto1.jpg" alt="Polo Bon Style Panda Vec">
             <div class="info">
                 <h3>GENÉRICO</h3>
                 <p>POLO BON STYLE PANDA VEC</p>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="product" data-name="Casaca Casual Hombre Mango" data-price="72">
-            <img src="/Public/imagenes/producto2.jpg" alt="Casaca Casual Hombre Mango">
+            <img src="/imagenes/producto2.jpg" alt="Casaca Casual Hombre Mango">
             <div class="info">
                 <h3>MANGO</h3>
                 <p>Casaca Casual Hombre Mango</p>
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="product" data-name="Casaca Hombre Bearcliff" data-price="159.90">
-            <img src="/Public/imagenes/producto2.jpg" alt="Casaca Hombre Bearcliff">
+            <img src="/imagenes/producto2.jpg" alt="Casaca Hombre Bearcliff">
             <div class="info">
                 <h3>BEARCLIFF</h3>
                 <p>Casaca Hombre Bearcliff</p>
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="product" data-name="POLO BON STYLE SPACE" data-price="49.90">
-            <img src="/Public/imagenes/producto1.jpg" alt="Polo Bon Style Space">
+            <img src="/imagenes/producto1.jpg" alt="Polo Bon Style Space">
             <div class="info">
                 <h3>GENÉRICO</h3>
                 <p>POLO BON STYLE SPACE</p>
@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="product" data-name="POLO BON STYLE PANDA VEC" data-price="34.90">
-            <img src="/Public/imagenes/producto1.jpg" alt="Polo Bon Style Panda Vec">
+            <img src="/imagenes/producto1.jpg" alt="Polo Bon Style Panda Vec">
             <div class="info">
                 <h3>GENÉRICO</h3>
                 <p>POLO BON STYLE PANDA VEC</p>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="product" data-name="Casaca Casual Hombre Mango" data-price="75">
-            <img src="/Public/imagenes/producto2.jpg" alt="Casaca Casual Hombre Mango">
+            <img src="/imagenes/producto2.jpg" alt="Casaca Casual Hombre Mango">
             <div class="info">
                 <h3>MANGO</h3>
                 <p>Casaca Casual Hombre Mango</p>
@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="product" data-name="Casaca Hombre Bearcliff" data-price="120">
-            <img src="/Public/imagenes/producto2.jpg" alt="Casaca Hombre Bearcliff">
+            <img src="/imagenes/producto2.jpg" alt="Casaca Hombre Bearcliff">
             <div class="info">
                 <h3>BEARCLIFF</h3>
                 <p>Casaca Hombre Bearcliff</p>
@@ -139,7 +139,7 @@
     <footer class="footer">
         <p>&copy; 2024 TreeSolution. Todos los derechos reservados.</p>
     </footer>
-    <script src="/Public/scripts/Dashboard.js"></script>
+    <script src="/scripts/Dashboard.js"></script>
 </body>
 
 </html>

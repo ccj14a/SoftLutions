@@ -5,11 +5,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const userIcon = document.querySelector('.header__action-icon');
   const userMenu = document.getElementById('userMenu');
   const cartIcon = document.getElementById('cartIcon');
+
   const cartModal = document.getElementById('cartModal');
+
   const cartItemsContainer = document.getElementById('cartItems');
   const totalPriceElement = document.getElementById('totalPrice');
   const cartCount = document.getElementById('cartCount');
+
   const productModal = document.getElementById('productModal');
+
+  const payModal = document.getElementById('payModal');
+
   const searchButton = document.getElementById('searchButton');
   const searchInput = document.getElementById('searchInput');
   const productList = document.getElementById('productList');
@@ -42,10 +48,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Ocultar el modal al hacer clic fuera de él
-  window.addEventListener('click', function (event) {
-      if (event.target === cartModal || event.target === productModal) {
+  overlay.addEventListener('click', function (event) {
+      if (true) {
+          cartModal.style.display = 'none';
+          productModal.style.display = 'none';
+          payModal.style.display = 'none';
           event.target.style.display = 'none';
           overlay.style.display = 'none';
+
           document.body.style.overflow = '';
       }
   });
@@ -55,7 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
       product.addEventListener('click', function () {
           const name = product.getAttribute('data-name');
           const price = product.getAttribute('data-price');
+          const id = product.getAttribute('data-id');
           const imgSrc = product.querySelector('img').getAttribute('src');
+
+          const modalProduct = document.getElementById('productModal');
+                modalProduct.setAttribute('data-id', id); 
 
           document.getElementById('modalImage').setAttribute('src', imgSrc);
           document.getElementById('modalName').textContent = name;
@@ -71,13 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
       const name = document.getElementById('modalName').textContent;
       const price = parseFloat(document.getElementById('modalPrice').textContent.replace('Precio: S/ ', ''));
       const quantity = parseInt(document.getElementById('quantity').value);
+      const idproducto= document.getElementById('productModal').getAttribute('data-id');
+
 
       const existingProductIndex = cart.findIndex(product => product.name === name);
 
       if (existingProductIndex > -1) {
           cart[existingProductIndex].quantity += quantity;
       } else {
-          cart.push({ name, price, quantity });
+          cart.push({ name, price, quantity, idproducto });
       }
 
       updateCart();
@@ -85,6 +101,105 @@ document.addEventListener('DOMContentLoaded', function () {
       overlay.style.display = 'none';
       document.body.style.overflow = '';
   });
+
+
+  let botonPagar = document.getElementById('pagarPedido')
+  const venta ={
+    // nombre:'',
+    // direccion: '',
+    // celular: '',
+    productos: [],
+    total: ''
+  }
+
+  botonPagar.onclick = enviarPedido;
+
+  async function enviarPedido(){
+    
+      let contenedorDatos = document.getElementById('payModal');
+      var inputs = document.querySelectorAll("#payModal input");
+      var listaProductos = document.querySelectorAll(".cart__item");
+      var totalPedido = document.querySelector("#totalPrice");
+  
+      listaProductos = Array.from(listaProductos).map( function(item) {
+        let producto = {
+          nombre: '',
+          cantidad:'',
+          precioUnitario : '',
+          idproducto : ''
+        }
+        // Eliminar cualquier espacio en blanco adicional
+        textoItem = item.textContent.replace("Quitar", "").trim();
+        // Dividir el texto en partes
+        let parts = textoItem.split(" - ");
+        // Obtener el nombre del producto
+        let nombre = parts[0];
+        // Obtener la parte que contiene el precio y la cantidad
+        let precioYCantidad = parts[1].split(" x ");
+        // Convertir el precio a número
+        let precio = parseFloat(precioYCantidad[0].replace("S/ ", ""));
+        // Convertir la cantidad a número
+        let cantidad = parseInt(precioYCantidad[1]);
+        
+        let id = item.getAttribute('data-idproducto');
+        // Devolver un objeto con los datos
+        producto.nombre = nombre;
+        producto.cantidad = cantidad;  
+        producto.precioUnitario = precio;
+        producto.idproducto = id;
+        return producto;
+      });
+  
+      // venta.nombre = inputs[0].value;
+      // venta.direccion = inputs[1].value;
+      // venta.celular = inputs[2].value;
+      venta.productos = listaProductos;
+      let stringPrecioTotal = totalPedido.textContent;
+      venta.total = parseFloat(stringPrecioTotal.match(/[0-9]+\.[0-9]+/)[0]);
+  
+      const datos  = new FormData();
+      // datos.append('nombre', venta.nombre)
+      // datos.append('direccion', venta.direccion)
+      // datos.append('celular', venta.celular)
+      datos.append('productos',  JSON.stringify(venta.productos))
+      datos.append('total', venta.total)
+      
+      // console.log([...datos]);
+      try {
+        // Petición hacia la api
+        const url = 'http://localhost:3000/api/pedido'
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
+  
+        const resultado = await respuesta.json();
+        // console.log(resultado);
+        
+        if(resultado.resultado) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Pedido Registrado',
+                text: 'Los detalles seran enviados al whatsapp del número registrado',
+                button: 'OK'
+            }).then( () => {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+ 
+        cart = [];
+        updateCart();
+        payModal.style.display ='none';
+        cartModal.style.display = 'none';
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+    
+  }
 
   // Actualizar carrito
   function updateCart() {
@@ -94,7 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       cart.forEach(product => {
           const item = document.createElement('li');
-          item.innerHTML = `${product.name} - S/ ${product.price.toFixed(2)} x ${product.quantity}
+          item.classList.add('cart__item');
+          item.dataset.idproducto = product.idproducto;
+
+          item.innerHTML = `<h5 class="cart__item-titulo">${product.name}</h5> - S/ ${product.price.toFixed(2)} x ${product.quantity}
           <button class="remove-item" data-name="${product.name}">Quitar</button>`;
           cartItemsContainer.appendChild(item);
           total += product.price * product.quantity;
@@ -134,12 +252,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Pagar
   document.getElementById('checkout').addEventListener('click', function () {
-      alert('Gracias por su compra');
-      cart = [];
-      updateCart();
+      
+      
+      payModal.style.display ='block'
       cartModal.style.display = 'none';
-      overlay.style.display = 'none';
-      document.body.style.overflow = '';
+      if(false){
+        cart = [];
+        updateCart();
+        
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      
   });
 
   // Cancelar
@@ -273,6 +397,7 @@ slider.addEventListener('mouseenter', () => {
 slider.addEventListener('mouseleave', () => {
   slideInterval = setInterval(autoSlide, 3000);
 });
+
 //animacion
 document.addEventListener("DOMContentLoaded", function() {
   var tituloAnimado = document.getElementById('tituloAnimado');
