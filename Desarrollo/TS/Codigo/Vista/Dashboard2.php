@@ -22,13 +22,19 @@
             <button class="header__search-button" id="searchButton"><img src="/imagenes/lupa.png" alt="Buscar" class="header__search-icon"></button>
         </div>
         <div class="header__actions">
-            <img src="/imagenes/user.png" alt="Perfil" class="header__action-icon" style="width: 30px; height: 30px;">
+            <img src="/imagenes/user.png" alt="Perfil" class="header__action-icon" 
+                style="width: 30px; height: 30px; <?php
+                                                    session_start();
+                                                    if($_SESSION == []){
+                                                        echo "display:none;";
+                                                    } 
+                                                    ?>" >
             <div class="dropdown-menu" id="userMenu">
                 <a href="#" id="editarPerfil">Editar perfil</a>
                 <a href="#" id="verPerfil">Ver perfil</a>
                 <a href="/logout" id="logout">Cerrar sesión</a>
             </div>
-            <div class="cart-icon-container">
+            <div class="cart-icon-container" >
                 <img src="/imagenes/Cart-icon.png" alt="Carrito" class="header__action-icon" id="cartIcon" style="width: 30px; height: 30px;">
                 <span id="cartCount" class="cart-count">0</span>
             </div>

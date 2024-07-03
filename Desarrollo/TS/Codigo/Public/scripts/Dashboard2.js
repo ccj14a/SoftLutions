@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // datos.append('celular', venta.celular)
       datos.append('productos',  JSON.stringify(venta.productos))
       datos.append('total', venta.total)
-  
+      
       // console.log([...datos]);
       try {
         // Petición hacia la api

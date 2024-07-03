@@ -24,11 +24,12 @@
                 
                 <li class="sidebar__item" id="productsButton">Productos</li> 
                 <li class="sidebar__item sidebar__item--active" id="usersButton">Usuarios</li>
-                <li class="sidebar__item" id="employeesButton">Empleados</li>
+                <li class="sidebar__item" id="employeesButton">Pedidos</li>
             </ul>
         </aside>
         <section class="content" >
             <h1 class="titulo" id="tituloAnimado">Panel de Administración</h1>
+            
             <div id="usersSection">
                 <h2>Usuarios</h2>
                 <table class="user-table">
@@ -39,58 +40,39 @@
                             <th>Usuario</th>
                             <th>Correo</th>
                             <th>Contacto</th>
-                            <th>Login con</th>
+                            <!-- <th>Login con</th> -->
                             <th>Estado de verificación</th>
-                            <th>Fecha de creación</th>
+                            <!-- <th>Fecha de creación</th> -->
                             <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>101</td>
-                            <td><img src="images/user_generico.png" alt="Perfil" style="width: 60px; height: 60px;"></td>
-                            <td>Juan Perez</td>
-                            <td>Juan.p@gmail.com</td>
-                            <td>999999888</td>
-                            <td>Google</td>
-                            <td>Verificado</td>
-                            <td>05-05-2024</td>
-                            <td>
-                                <button>Ver</button>
-                                <button>Bloquear</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>102</td>
-                            <td><img src="images/user_generico_2.png" alt="Perfil" style="width: 60px; height: 60px;"></td>
-                            <td>Maria Sanchez</td>
-                            <td>Maria.s@gmail.com</td>
-                            <td>999999777</td>
-                            <td>Google</td>
-                            <td>Verificado</td>
-                            <td>05-08-2024</td>
-                            <td>
-                                <button>Ver</button>
-                                <button>Bloquear</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>103</td>
-                            <td><img src="images/user_generico.png" alt="Perfil" style="width: 60px; height: 60px;"></td>
-                            <td>Carlos Vega</td>
-                            <td>Carlos.v@gmail.com</td>
-                            <td>999999666</td>
-                            <td>Google</td>
-                            <td>Verificado</td>
-                            <td>05-15-2024</td>
-                            <td>
-                                <button>Ver</button>
-                                <button>Bloquear</button>
-                            </td>
-                        </tr>
+
+                        <?php
+                            foreach($usuarios as $key=>$usuario){
+                        ?> 
+                            <tr>
+                                <td><?php echo $usuario->ID_Usuario; ?></td>
+                                <td style="text-align:center;"><img src="imagenes/user_generico.png" alt="Perfil" style="width: 60px; height: 60px; "></td>
+                                <td><?php echo $usuario->nombre.' '.$usuario->apellido ; ?></td>
+                                <td><?php echo $usuario->email; ?></td>
+                                <td><?php echo $usuario->telefono; ?></td>
+                                <td><?php echo $usuario->usuario; ?></td>
+
+                                <td>
+                                    <button>Ver</button>
+                                    <button>Bloquear</button>
+                                </td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
+                        
+                        
                     </tbody>
                 </table>
             </div>
+
             <div id="productsSection" style="display: none;">
                 <h2>Productos</h2>
                 <table class="product-table">
@@ -103,111 +85,76 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Polo deportivo azul</td>
-                            <td>100</td>
-                            <td>S/ 49.90</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Polo deportivo negro</td>
-                            <td>80</td>
-                            <td>S/ 49.90</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Short deportivo negro</td>
-                            <td>120</td>
-                            <td>S/ 42.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Casaca Hombre azul</td>
-                            <td>100</td>
-                            <td>S/ 119.90</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Zapatilla runner</td>
-                            <td>100</td>
-                            <td>S/ 129.90</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Zapatilla runner blanca</td>
-                            <td>110</td>
-                            <td>S/ 159.90</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Casaca roja para mujer</td>
-                            <td>70</td>
-                            <td>S/ 120.00</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Conjunto deportivo para mujer</td>
-                            <td>90</td>
-                            <td>S/ 179.90</td>
-                        </tr>
-                        <!-- Más filas según sea necesario -->
+                        <?php 
+                            foreach($productos as $key=>$producto){
+                        ?>
+                            <tr>
+                                <td><?php echo $producto->ID_Producto; ?></td>
+                                <td><?php echo $producto->nombre; ?></td>
+                                <td>100</td>
+                                <td>S/.<?php echo $producto->precio; ?></td>
+                            </tr>    
+                        <?php        
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
+            
             <div id="employeesSection" style="display: none;">
-                <h2>Empleados</h2>
+                <h2>Pedidos</h2>
+
+                <?php 
+                    $ventasAgrupadas = [];
+                    foreach ($ventas as $venta) {
+                        $ventasAgrupadas[$venta->ID_Venta]['cliente'] = $venta->cliente;
+                        $ventasAgrupadas[$venta->ID_Venta]['total'] = $venta->total;
+                        $ventasAgrupadas[$venta->ID_Venta]['productos'][] = [
+                            'nombre' => $venta->nombre,
+                            'cantidad' => $venta->cantidad,
+                            'precio_Unitario' => $venta->precio_Unitario,
+                            'subtotal' => $venta->subtotal
+                        ];
+                    }
+                ?>
                 <table class="employee-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>DNI</th>
-                            <th>Celular</th>
-                            <th>Cargo</th>
-                            <th>Sueldo mensual</th>
+                            <th>ID Venta</th>
+                            <th>Cliente</th>
+                            <th>Productos</th>
+                            <th>Total</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
+                    <?php
+                        foreach($ventasAgrupadas as $ID_Venta => $venta){
+                            $productos = $venta['productos'];
+                            $rowspan = count($productos);
+                            $cliente = $venta['cliente'];
+                            $total = $venta['total'];
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Juan</td>
-                            <td>Perez</td>
-                            <td>12345678</td>
-                            <td>987654321</td>
-                            <td>Gerente</td>
-                            <td>S/ 5000.00</td>
+                            <td rowspan="<?php echo $rowspan; ?>"><?php echo $ID_Venta; ?></td>
+                            <td rowspan="<?php echo $rowspan; ?>"><?php echo $cliente; ?></td>
+                            <td>
+                                <?php echo $productos[0]['nombre']; ?> - <?php echo $productos[0]['cantidad']; ?>un. - Precio(unidad): S/.<?php echo $productos[0]['precio_Unitario'];?> - Subtotal: S/.<?php echo $productos[0]['subtotal']; ?>
+                            </td>
+                            <td rowspan="<?php echo $rowspan; ?>">S/.<?php echo $total; ?></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Kiara</td>
-                            <td>Blas</td>
-                            <td>12345678</td>
-                            <td>987654321</td>
-                            <td>Vendedora</td>
-                            <td>S/ 1500.00</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Danna</td>
-                            <td>Castillo</td>
-                            <td>12345678</td>
-                            <td>987654321</td>
-                            <td>Vendedora</td>
-                            <td>S/ 1500.00</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Pablo</td>
-                            <td>Zavala</td>
-                            <td>12345678</td>
-                            <td>987654321</td>
-                            <td>Guardia</td>
-                            <td>S/ 1800.00</td>
-                        </tr>
-                        <!-- Más filas según sea necesario -->
+                        <?php for ($i = 1; $i < $rowspan; $i++) { ?>
+                            <tr>
+                                <td>
+                                    <?php echo $productos[$i]['nombre']; ?> - <?php echo $productos[$i]['cantidad']; ?>un. - Precio(unidad): S/.<?php echo $productos[$i]['precio_Unitario'];?> - Subtotal: S/.<?php echo $productos[$i]['subtotal']; ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php
+                        }
+                    ?>
                     </tbody>
+                    
                 </table>
             </div>
         </section>

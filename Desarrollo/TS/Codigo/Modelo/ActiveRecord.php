@@ -108,7 +108,7 @@ class ActiveRecord{
         return $sanitizado;
     }
 
-    //Listar todos los productos
+    //Listar todos los resultados de la tabla
     public static function all(){
         $query = "SELECT * FROM ". static::$tabla;
 
@@ -182,5 +182,11 @@ class ActiveRecord{
         return $resultado;
     }
 
+
+    // Consulta Plana de SQL 
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
 }    
 

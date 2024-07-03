@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const exploButton = document.getElementById('exploButton');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const exploButton = document.getElementById('exploButton');
 
-    exploButton.addEventListener('click', function () {
-        window.location.href = '/dashboard'; // Redirige a la página de inicio
-    });
-});
+//     exploButton.addEventListener('click', function () {
+//         window.location.href = '/dashboard'; // Redirige a la página de inicio
+//     });
+// });

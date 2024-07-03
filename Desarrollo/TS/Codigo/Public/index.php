@@ -9,6 +9,7 @@ use MVC\Router;
 use Controllers\PaginasController;
 use Controllers\LoginController;
 use Controllers\AdminController;
+
 //Metodo para obtener todos los productos de la db
 // $productos = Producto::all();
 // debuguear($productos);
@@ -32,5 +33,6 @@ $router->post('/registrarse',[LoginController::class, 'CrearCuenta']);
 $router->get('/api/productos',[APIController::class, 'index']);
 $router->post('/api/pedido', [APIController::class, 'crearPedido']);
 
+// $router->get('/api/imprimirProducto',[AdminController::class, 'obtenerVentas']);
 
 $router->comprobarRutas();
